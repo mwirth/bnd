@@ -27,7 +27,7 @@ NB: Many of the tasks described here can be more easily performed with a
 full-featured OSGi IDE such as Bndtools, for example in the [OSGi enRoute Wrap Tutorial][]. However, this document is
 intended for users who perform these tasks infrequently and do not wish
 to download an IDE; instead a single, lightweight
-command-line tool is used. 
+command-line tool is used.
 
 Bnd generates the `Import-Package` statement of the output bundle via an
 extremely thorough inspection of the compiled Java. Every bytecode
@@ -76,7 +76,7 @@ Create a file named `jdom.bnd` containing the following:
     -classpath: jdom.jar
     Bundle-SymbolicName: org.jdom
     ver: 1.1.1
-    -output: ${bsn}-${ver}.jar
+    -outputmask: ${@bsn}-${ver}.jar
     Bundle-Version: ${ver}
     Export-Package: *;version=${ver}
 
@@ -221,7 +221,7 @@ option: ￼￼￼
     org.jaxen                  org.jdom.xpath
     org.jaxen.jdom             org.jdom.xpath
     org.jdom
-                                          . 
+                                          .
                                org.jdom.adapters
                                org.jdom.filter
     ...
@@ -271,7 +271,7 @@ JDOM XPath bundle. This is based on our original recipe:
     -classpath: jdom.jar
     Bundle-SymbolicName: org.jdom.xpath
     ver: 1.1.1
-    -output: ${bsn}-${ver}.jar
+    -outputmask: ${@bsn}-${ver}.jar
     Bundle-Version: ${ver}
     Export-Package: org.jdom.xpath;version=${ver}
 
@@ -332,7 +332,7 @@ exclusion rule to `Import-Package`:
     Import-Package: \
     	oracle.xml.parser*;resolution:=optional,\
 		org.apache.xerces.*;resolution:=optional,\
-    	!org.junit*,\ 
+    	!org.junit*,\
     	*
 
 Exclusion rules should be used with caution, as they can cause the
@@ -460,7 +460,7 @@ wrapping. The placeholders on the first three lines must be filled in:
     -classpath: <INPUT JAR(S)>
     Bundle-SymbolicName: <NAME>
     ver: <VERSION>
-    -output: ${bsn}-${ver}.jar
+    -outputmask: ${@bsn}-${ver}.jar
     Bundle-Version: ${ver}
     Export-Package: *;version=${ver}
     # Uncomment next line to customize imports. The last entry MUST be "*"
